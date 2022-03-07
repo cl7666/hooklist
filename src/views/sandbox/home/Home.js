@@ -5,20 +5,20 @@ import axios from 'axios'
 export default function Home() {
     const ajax = () => {
         //取数据
-        // axios.get("http://localhost:8000/posts").then(res => {
+        // axios.get("http://localhost:5000/posts").then(res => {
         //     console.log(res.data)
         // });
         // 增
-        // axios.post("http://localhost:8000/posts", {
+        // axios.post("http://localhost:5000/posts", {
         //     title: "3333",
         //     author: "xiaoming"
         // })
         // 修改
-        // axios.put("http://localhost:8000/posts/1", {
+        // axios.put("http://localhost:5000/posts/1", {
         //     title: "1111"
         // })
         // 更新
-        // axios.patch("http://localhost:8000/posts/1",{
+        // axios.patch("http://localhost:5000/posts/1",{
         //     title:"111"
         // })
     }
