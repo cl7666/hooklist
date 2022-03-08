@@ -10,7 +10,7 @@ export default function RightList() {
     const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/rights?_embed=children").then((res) => {
+        axios.get("http://localhost:5000/rights?_embed=children").then((res) => {
             res.data.forEach((item) =>
                 item.children?.length === 0 ? (item.children = "") : item.children
             );
@@ -68,11 +68,11 @@ export default function RightList() {
         item.pagepermission = item.pagepermission === 1 ? 0 : 1
         setDataSource([...dataSource])
         if (item.grade === 1) {
-            axios.patch(`http://localhost:8000/rights/${item.id}`, {
+            axios.patch(`http://localhost:5000/rights/${item.id}`, {
                 pagepermission: item.pagepermission
             })
         } else {
-            axios.patch(`http://localhost:8000/children/${item.id}`, {
+            axios.patch(`http://localhost:5000/children/${item.id}`, {
                 pagepermission: item.pagepermission
             })
         }
@@ -93,11 +93,11 @@ export default function RightList() {
 
     const deleteMethod = (item) => {
         if (item.grade === 1) {
-            axios.delete(`http://localhost:8000/rights/${item.id}`)
+            axios.delete(`http://localhost:5000/rights/${item.id}`)
                 .then(setRefresh)
                 .catch((e) => console.log(e))
         } else {
-            axios.delete(`http://localhost:8000/children/${item.id}`)
+            axios.delete(`http://localhost:5000/children/${item.id}`)
                 .then(setRefresh)
                 .catch((e) => console.log(e))
         }

@@ -62,23 +62,23 @@ export default function RoleList() {
 
     const deleteMethod = (item) => {
         setDataSource(dataSource.filter(data => data.id !== item.id))
-        axios.delete(`http://localhost:8000/roles/${item.id}`)
+        axios.delete(`http://localhost:5000/roles/${item.id}`)
     }
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/roles")
+            .get("http://localhost:5000/roles")
             .then((res) => setDataSource(res.data))
             .catch((e) => console.log(e));
         axios
-            .get("http://localhost:8000/rights?_embed=children")
+            .get("http://localhost:5000/rights?_embed=children")
             .then((res) => setRightList(res.data))
             .catch((e) => console.log(e));
     }, [refresh]);
 
     const handleOk = () => {
         setIsModalVisible(false);
-        axios.patch(`http://localhost:8000/roles/${currentId}`, {
+        axios.patch(`http://localhost:5000/roles/${currentId}`, {
             rights: currentRights
         })
             .then(setRefresh)

@@ -57,7 +57,7 @@ export default function SideMenu({ collapsed }) {
     let navigate = useNavigate();
     const [menu, setMenu] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:8000/rights?_embed=children").then(res => {
+        axios.get("http://localhost:5000/rights?_embed=children").then(res => {
             setMenu(res.data)
         })
     }, [])

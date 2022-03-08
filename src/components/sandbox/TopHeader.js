@@ -5,19 +5,25 @@ import {
     MenuFoldOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import { useNavigate } from "react-router";
 
 const { Header } = Layout
 export default function TopHeader() {
+    let navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
     function changeCollapsed() {
         return (
             setCollapsed(!collapsed)
         );
     }
+    const { role: { roleName }, username } = JSON.parse(localStorage.getItem("token"))
     const menu = (
         <Menu>
-            <Menu.Item>超级管理员</Menu.Item>
-            <Menu.Item danger>退出登录</Menu.Item>
+            <Menu.Item>{roleName}</Menu.Item>
+            <Menu.Item danger onClick={() => {
+                localStorage.removeItem("token")
+                navigate("/login");
+            }}>退出登录</Menu.Item>
         </Menu>
     );
     return (
@@ -26,7 +32,7 @@ export default function TopHeader() {
                 collapsed ? <MenuUnfoldOutlined onClick={changeCollapsed} /> : <MenuFoldOutlined onClick={changeCollapsed} />
             }
             <div style={{ float: "right" }}>
-                <span>欢迎admin回来！</span>
+                <span>欢迎{username}回来！</span>
                 <Dropdown overlay={menu}>
                     <Avatar size="large" icon={<UserOutlined />} />
                 </Dropdown>
